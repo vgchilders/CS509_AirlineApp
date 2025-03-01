@@ -21,8 +21,7 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddDbContext<AppDbContext>(options=>
-options.UseMySql(
-builder.Configuration.GetConnectionString("DefaultConnection"),
+options.UseMySql(Environment.GetEnvironmentVariable("DefaultConnection"),
 new MySqlServerVersion(new Version(8,0,41))
 ));
 
