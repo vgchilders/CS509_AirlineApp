@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "KgbmlPYOTXdFypjcieX9pDYolN9cJFqqzaFhHmy8PGU=",
+  "Hash": "1POB3XUJNbPDEULKiXRZCo1v2ZcnNCCWrZpmSGGzc3U=",
   "Source": "AppBackend",
   "BasePath": "_content/AppBackend",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }

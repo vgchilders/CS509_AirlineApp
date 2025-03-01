@@ -1,5 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using AppBackend.Data;
+using AutoMapper;
+using AppBackend.Mapping;
+
+
+var connectionString=Environment.GetEnvironmentVariable("DefaultConnection");
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
+// builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddAutoMapper(typeof(AppBackend.Mapping.MappingProfile));
+
 
 builder.Services.AddCors(options =>
 {
@@ -9,6 +19,14 @@ builder.Services.AddCors(options =>
                             policy.WithOrigins("http://localhost:5173", "http://localhost:5218"); //in lecture 5248, 5218 for my local
                         });
 });
+
+builder.Services.AddDbContext<AppDbContext>(options=>
+options.UseMySql(
+builder.Configuration.GetConnectionString("DefaultConnection"),
+new MySqlServerVersion(new Version(8,0,41))
+));
+
+
 
 // Add services to the container.
 
