@@ -2884,11 +2884,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\awetb\\Documents\\wpistudent\\CS509_AirlineApp\\AppBackend\\AppBackend.csproj",
+      "projectUniqueName": "C:\\Users\\awetb\\OneDrive\\Desktop\\AppBackend\\AppBackend.csproj",
       "projectName": "AppBackend",
-      "projectPath": "C:\\Users\\awetb\\Documents\\wpistudent\\CS509_AirlineApp\\AppBackend\\AppBackend.csproj",
+      "projectPath": "C:\\Users\\awetb\\OneDrive\\Desktop\\AppBackend\\AppBackend.csproj",
       "packagesPath": "C:\\Users\\awetb\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\awetb\\Documents\\wpistudent\\CS509_AirlineApp\\AppBackend\\obj\\",
+      "outputPath": "C:\\Users\\awetb\\OneDrive\\Desktop\\AppBackend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\awetb\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -2988,5 +2988,13 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\awetb\\OneDrive\\Desktop\\AppBackend\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

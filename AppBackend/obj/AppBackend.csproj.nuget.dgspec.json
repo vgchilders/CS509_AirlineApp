@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\awetb\\Documents\\wpistudent\\CS509_AirlineApp\\AppBackend\\AppBackend.csproj": {}
+    "C:\\Users\\awetb\\OneDrive\\Desktop\\AppBackend\\AppBackend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\awetb\\Documents\\wpistudent\\CS509_AirlineApp\\AppBackend\\AppBackend.csproj": {
+    "C:\\Users\\awetb\\OneDrive\\Desktop\\AppBackend\\AppBackend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\awetb\\Documents\\wpistudent\\CS509_AirlineApp\\AppBackend\\AppBackend.csproj",
+        "projectUniqueName": "C:\\Users\\awetb\\OneDrive\\Desktop\\AppBackend\\AppBackend.csproj",
         "projectName": "AppBackend",
-        "projectPath": "C:\\Users\\awetb\\Documents\\wpistudent\\CS509_AirlineApp\\AppBackend\\AppBackend.csproj",
+        "projectPath": "C:\\Users\\awetb\\OneDrive\\Desktop\\AppBackend\\AppBackend.csproj",
         "packagesPath": "C:\\Users\\awetb\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\awetb\\Documents\\wpistudent\\CS509_AirlineApp\\AppBackend\\obj\\",
+        "outputPath": "C:\\Users\\awetb\\OneDrive\\Desktop\\AppBackend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\awetb\\AppData\\Roaming\\NuGet\\NuGet.Config"

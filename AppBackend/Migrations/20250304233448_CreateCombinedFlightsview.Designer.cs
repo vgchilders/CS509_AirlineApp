@@ -4,6 +4,7 @@ using AppBackend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppBackend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250304233448_CreateCombinedFlightsview")]
+    partial class CreateCombinedFlightsview
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,45 +24,6 @@ namespace AppBackend.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
-
-            modelBuilder.Entity("AppBackend.Models.CombineFlight", b =>
-                {
-                    b.Property<string>("ArriveAirport")
-                        .IsRequired()
-                        .HasColumnType("VARCHAR(100)")
-                        .HasColumnName("ArriveAirport");
-
-                    b.Property<DateTime>("ArriveDateTime")
-                        .HasColumnType("DATETIME")
-                        .HasColumnName("ArriveDateTime");
-
-                    b.Property<string>("DepartAirport")
-                        .IsRequired()
-                        .HasColumnType("VARCHAR(100)")
-                        .HasColumnName("DepartAirport");
-
-                    b.Property<DateTime>("DepartDateTime")
-                        .HasColumnType("DATETIME")
-                        .HasColumnName("DepartDateTime");
-
-                    b.Property<string>("FlightNumber")
-                        .IsRequired()
-                        .HasColumnType("VARCHAR(200)")
-                        .HasColumnName("FlightNumber");
-
-                    b.Property<string>("FlightSource")
-                        .IsRequired()
-                        .HasColumnType("VARCHAR(20)")
-                        .HasColumnName("flight_source");
-
-                    b.Property<int>("Id")
-                        .HasColumnType("int")
-                        .HasColumnName("Id");
-
-                    b.ToTable((string)null);
-
-                    b.ToView("combined_flights", (string)null);
-                });
 
             modelBuilder.Entity("AppBackend.Models.Deltas", b =>
                 {
