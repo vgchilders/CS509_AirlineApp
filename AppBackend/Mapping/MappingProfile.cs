@@ -9,6 +9,8 @@ namespace AppBackend.Mapping{
         public MappingProfile(){
             CreateMap<Deltas,DeltasDto>();
             CreateMap<SouthWests,SouthwestsDto>();
+            CreateMap<CombineFlight,CombinedFlightDto>();
+            CreateMap<ConnectingFlight,ConnectingFlightDto>();
         }
     }
 }

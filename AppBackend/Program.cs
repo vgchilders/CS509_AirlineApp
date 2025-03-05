@@ -4,7 +4,7 @@ using AutoMapper;
 using AppBackend.Mapping;
 
 
-var connectionString=Environment.GetEnvironmentVariable("DefaultConnection");
+
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
 // builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
