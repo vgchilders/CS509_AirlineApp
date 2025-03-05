@@ -27,7 +27,7 @@ public class CombinedFlightsController : ControllerBase
         DateTime departureDate, 
         DateTime? returnDate = null)
     {
-        // ✅ Fetch direct one-way flights
+        //  Fetch direct one-way flights
         var directDepartFlights = await _context.CombineFlights
             .Where(f => f.DepartAirport.Contains(departAirport) 
                         && f.ArriveAirport.Contains(arriveAirport) 
@@ -36,7 +36,7 @@ public class CombinedFlightsController : ControllerBase
 
         var directDepartFlightDtos = _mapper.Map<IEnumerable<CombinedFlightDto>>(directDepartFlights);
 
-        // ✅ Fetch connecting one-way flights
+        //  Fetch connecting one-way flights
         var connectingDepartFlights = await _context.ConnectingFlights
             .Where(f => f.Flight1_DepartAirport.Contains(departAirport)
                         && f.Flight2_ArriveAirport.Contains(arriveAirport)
@@ -45,7 +45,7 @@ public class CombinedFlightsController : ControllerBase
 
         var connectingDepartFlightDtos = _mapper.Map<IEnumerable<ConnectingFlightDto>>(connectingDepartFlights);
 
-        // ✅ Combine direct & connecting flights
+        //  Combine direct & connecting flights
         var response = new FlightSearchRespones{
          DirectDepartFlights=directDepartFlightDtos,
          ConnectingDepartFlights=connectingDepartFlightDtos
@@ -53,7 +53,7 @@ public class CombinedFlightsController : ControllerBase
         };
         
 
-        // ✅ Fetch round-trip flights if `returnDate` is provided
+        //  Fetch round-trip flights if `returnDate` is provided
         var returnFlights = new List<object>();
 
         if (returnDate.HasValue)
