@@ -1,5 +1,5 @@
 namespace AppBackend.DTOs{
-public class FlightSearchRespones
+public class FlightSearchResponses
 {
 public IEnumerable<CombinedFlightDto> DirectDepartFlights{ get; set; }
 public IEnumerable<ConnectingFlightDto> ConnectingDepartFlights{ get; set; }
