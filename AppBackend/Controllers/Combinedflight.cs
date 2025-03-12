@@ -21,7 +21,7 @@ public class CombinedFlightsController : ControllerBase
     } 
 
     [HttpGet("search")]
-    public async Task<ActionResult<FlightSearchRespones>> SearchFlights(
+    public async Task<ActionResult<FlightSearchResponses>> SearchFlights(
         string departAirport, 
         string arriveAirport, 
         DateTime departureDate, 
@@ -46,7 +46,7 @@ public class CombinedFlightsController : ControllerBase
         var connectingDepartFlightDtos = _mapper.Map<IEnumerable<ConnectingFlightDto>>(connectingDepartFlights);
 
         //  Combine direct & connecting flights
-        var response = new FlightSearchRespones{
+        var response = new FlightSearchResponses{
          DirectDepartFlights=directDepartFlightDtos,
          ConnectingDepartFlights=connectingDepartFlightDtos
         
