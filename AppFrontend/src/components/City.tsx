@@ -6,7 +6,7 @@ function City() {
   const [response, setresponse] = useState([]);
   const getdata = async () => { //function to get data from backend
       try{
-          const res = await axios.get('http://localhost:5218/api/v1/CombinedFlightsController/search');
+          const res = await axios.get('http://localhost:5218/api/v1/CombinedFlights/search');
           setresponse(res.data);
       }catch(err){
           console.log("error");

@@ -1,0 +1,13 @@
+.flight-lists-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.flight-lists-container > div {
+  width: 45%;
+}
+
+.flight-lists-container.single-column > div {
+  width: 100%;
+}

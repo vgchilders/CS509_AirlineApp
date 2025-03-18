@@ -63,9 +63,11 @@ namespace AppBackend.Migrations
                 columns: new[] { "Id", "DepartDateTime", "ArriveDateTime", "DepartAirport", "ArriveAirport", "FlightNumber" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 3, 1, 8, 0, 0), new DateTime(2023, 3, 1, 10, 0, 0), "JFK", "LAX", "DL100" },
-                    { 2, new DateTime(2023, 3, 2, 9, 0, 0), new DateTime(2023, 3, 2, 11, 0, 0), "JFK", "LAX", "DL101" },
-                    { 3, new DateTime(2023, 3, 3, 10, 0, 0), new DateTime(2023, 3, 3, 12, 0, 0), "JFK", "LAX", "DL102" }
+                    { 1, new DateTime(2025, 3, 1, 8, 0, 0), new DateTime(2025, 3, 1, 10, 0, 0), "JFK", "LAX", "DL100" },
+                    { 2, new DateTime(2025, 3, 2, 9, 0, 0), new DateTime(2025, 3, 2, 11, 0, 0), "JFK", "LAX", "DL101" },
+                    { 3, new DateTime(2025, 3, 3, 10, 0, 0), new DateTime(2025, 3, 3, 12, 0, 0), "JFK", "LAX", "DL102" },
+                    { 4, new DateTime(2025, 3, 4, 11, 0, 0), new DateTime(2025, 3, 4, 13, 0, 0), "LAX", "JFK", "DL103" },
+                    { 5, new DateTime(2025, 3, 5, 12, 0, 0), new DateTime(2025, 3, 5, 14, 0, 0), "LAX", "JFK", "DL104" }
                 }
             );
 
@@ -75,9 +77,11 @@ namespace AppBackend.Migrations
                 columns: new[] { "Id", "DepartDateTime", "ArriveDateTime", "DepartAirport", "ArriveAirport", "FlightNumber" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 3, 1, 8, 0, 0), new DateTime(2023, 3, 1, 10, 0, 0), "JFK", "LAX", "SW100" },
-                    { 2, new DateTime(2023, 3, 2, 9, 0, 0), new DateTime(2023, 3, 2, 11, 0, 0), "JFK", "LAX", "SW101" },
-                    { 3, new DateTime(2023, 3, 3, 10, 0, 0), new DateTime(2023, 3, 3, 12, 0, 0), "JFK", "LAX", "SW102" }
+                    { 1, new DateTime(2025, 3, 1, 8, 0, 0), new DateTime(2025, 3, 1, 10, 0, 0), "JFK", "LAX", "SW100" },
+                    { 2, new DateTime(2025, 3, 2, 9, 0, 0), new DateTime(2025, 3, 2, 11, 0, 0), "JFK", "LAX", "SW101" },
+                    { 3, new DateTime(2025, 3, 3, 10, 0, 0), new DateTime(2025, 3, 3, 12, 0, 0), "JFK", "LAX", "SW102" },
+                    { 4, new DateTime(2025, 3, 4, 11, 0, 0), new DateTime(2025, 3, 4, 13, 0, 0), "LAX", "JFK", "SW103" },
+                    { 5, new DateTime(2025, 3, 5, 12, 0, 0), new DateTime(2025, 3, 5, 14, 0, 0), "LAX", "JFK", "SW104" }
                 }
             );
         }

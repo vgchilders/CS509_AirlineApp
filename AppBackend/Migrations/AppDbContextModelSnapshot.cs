@@ -61,6 +61,75 @@ namespace AppBackend.Migrations
                     b.ToView("combined_flights", (string)null);
                 });
 
+            modelBuilder.Entity("AppBackend.Models.ConnectingFlight", b =>
+                {
+                    b.Property<TimeSpan>("ALLFlightDuration")
+                        .HasColumnType("time(6)")
+                        .HasColumnName("ALLFlightDuration");
+
+                    b.Property<string>("ConnectingAirport")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(100)")
+                        .HasColumnName("ConnectingAirport");
+
+                    b.Property<DateTime>("Flight1_ArrivalDateTime")
+                        .HasColumnType("DATETIME")
+                        .HasColumnName("Flight1_ArrivalDateTime");
+
+                    b.Property<string>("Flight1_DepartAirport")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(100)")
+                        .HasColumnName("Flight1_DepartAirport");
+
+                    b.Property<DateTime>("Flight1_DepartureDateTime")
+                        .HasColumnType("DATETIME")
+                        .HasColumnName("Flight1_DepartureDateTime");
+
+                    b.Property<int>("Flight1_Id")
+                        .HasColumnType("int")
+                        .HasColumnName("Flight1_Id");
+
+                    b.Property<string>("Flight1_Source")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(20)")
+                        .HasColumnName("Flight1_Source");
+
+                    b.Property<DateTime>("Flight2_ArrivalDateTime")
+                        .HasColumnType("DATETIME")
+                        .HasColumnName("Flight2_ArrivalDateTime");
+
+                    b.Property<string>("Flight2_ArriveAirport")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(100)")
+                        .HasColumnName("Flight2_ArriveAirport");
+
+                    b.Property<DateTime>("Flight2_DepartureDateTime")
+                        .HasColumnType("DATETIME")
+                        .HasColumnName("Flight2_DepartureDateTime");
+
+                    b.Property<int>("Flight2_Id")
+                        .HasColumnType("int")
+                        .HasColumnName("Flight2_Id");
+
+                    b.Property<string>("Flight2_Source")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(20)")
+                        .HasColumnName("Flight2_Source");
+
+                    b.Property<string>("IndirectFlightNumber")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)")
+                        .HasColumnName("IndirectFlightNumber");
+
+                    b.Property<TimeSpan>("TransitTime")
+                        .HasColumnType("time(6)")
+                        .HasColumnName("TransitTime");
+
+                    b.ToTable((string)null);
+
+                    b.ToView("connecting_flights_view", (string)null);
+                });
+
             modelBuilder.Entity("AppBackend.Models.Deltas", b =>
                 {
                     b.Property<int>("Id")
