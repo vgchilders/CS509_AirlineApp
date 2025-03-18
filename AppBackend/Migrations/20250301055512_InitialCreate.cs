@@ -56,6 +56,30 @@ namespace AppBackend.Migrations
                     table.PrimaryKey("PK_SouthWests", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
+
+            // Add sample data to the Deltas table
+            migrationBuilder.InsertData(
+                table: "Deltas",
+                columns: new[] { "Id", "DepartDateTime", "ArriveDateTime", "DepartAirport", "ArriveAirport", "FlightNumber" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2023, 3, 1, 8, 0, 0), new DateTime(2023, 3, 1, 10, 0, 0), "JFK", "LAX", "DL100" },
+                    { 2, new DateTime(2023, 3, 2, 9, 0, 0), new DateTime(2023, 3, 2, 11, 0, 0), "JFK", "LAX", "DL101" },
+                    { 3, new DateTime(2023, 3, 3, 10, 0, 0), new DateTime(2023, 3, 3, 12, 0, 0), "JFK", "LAX", "DL102" }
+                }
+            );
+
+            // Add sample data to the SouthWests table
+            migrationBuilder.InsertData(
+                table: "SouthWests",
+                columns: new[] { "Id", "DepartDateTime", "ArriveDateTime", "DepartAirport", "ArriveAirport", "FlightNumber" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2023, 3, 1, 8, 0, 0), new DateTime(2023, 3, 1, 10, 0, 0), "JFK", "LAX", "SW100" },
+                    { 2, new DateTime(2023, 3, 2, 9, 0, 0), new DateTime(2023, 3, 2, 11, 0, 0), "JFK", "LAX", "SW101" },
+                    { 3, new DateTime(2023, 3, 3, 10, 0, 0), new DateTime(2023, 3, 3, 12, 0, 0), "JFK", "LAX", "SW102" }
+                }
+            );
         }
 
         /// <inheritdoc />
