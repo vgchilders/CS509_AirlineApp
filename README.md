@@ -9,3 +9,7 @@ Ensure that in the program.cs fil of the backend the policy.withorigin line prop
 In terminal 1 'cd AppBackend' and use 'dotnet run' to start backend server
 
 In terminal 2 'cd AppFrontend' and use 'npm run dev' to start frontend server
+
+
+
+Please add Environment variable in your your system that is called "DefaultConnection" that has the connecting string to your database.
