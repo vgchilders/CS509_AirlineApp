@@ -10,6 +10,12 @@ var builder = WebApplication.CreateBuilder(args);
 // builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddAutoMapper(typeof(AppBackend.Mapping.MappingProfile));
 
+var connectionString= Environment.GetEnvironmentVariable("DefaultConnection");
+
+if(string.IsNullOrEmpty(connectionString)){
+    throw new InvalidOperationException("The environment variable  ' DefaultConnection' is not set or empty. ");
+}
+
 
 builder.Services.AddCors(options =>
 {
@@ -21,7 +27,7 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddDbContext<AppDbContext>(options=>
-options.UseMySql(Environment.GetEnvironmentVariable("DefaultConnection"),
+options.UseMySql(connectionString,
 new MySqlServerVersion(new Version(8,0,41))
 ));
 
