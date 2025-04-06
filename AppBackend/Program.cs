@@ -2,6 +2,9 @@ using Microsoft.EntityFrameworkCore;
 using AppBackend.Data;
 using AutoMapper;
 using AppBackend.Mapping;
+using AppBackend.Interfaces;
+using AppBackend.Repositories;
+using AppBackend.Services;
 
 
 
@@ -36,6 +39,9 @@ new MySqlServerVersion(new Version(8,0,41))
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddScoped<IFlightRepository,FlightRepository>();
+builder.Services.AddScoped<ICitiesRepository,CityRepository>();
+builder.Services.AddScoped<Icalculate,Calculate>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
