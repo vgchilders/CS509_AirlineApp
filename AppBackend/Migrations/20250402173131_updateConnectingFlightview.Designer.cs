@@ -4,6 +4,7 @@ using AppBackend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppBackend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250402173131_updateConnectingFlightview")]
+    partial class updateConnectingFlightview
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,25 +24,6 @@ namespace AppBackend.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
-
-            modelBuilder.Entity("AppBackend.Models.Cities", b =>
-                {
-                    b.Property<string>("CityName")
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.Property<float>("Latitude")
-                        .HasColumnType("float");
-
-                    b.Property<float>("Longitude")
-                        .HasColumnType("float");
-
-                    b.HasKey("CityName");
-
-                    b.ToTable("Cities");
-                });
 
             modelBuilder.Entity("AppBackend.Models.CombineFlight", b =>
                 {
@@ -95,10 +79,6 @@ namespace AppBackend.Migrations
                         .HasColumnType("VARCHAR(100)")
                         .HasColumnName("ConnectingAirport");
 
-                    b.Property<TimeSpan>("Flight1Duration")
-                        .HasColumnType("time(6)")
-                        .HasColumnName("Flight1Duration");
-
                     b.Property<DateTime>("Flight1_ArrivalDateTime")
                         .HasColumnType("DATETIME")
                         .HasColumnName("Flight1_ArrivalDateTime");
@@ -120,10 +100,6 @@ namespace AppBackend.Migrations
                         .IsRequired()
                         .HasColumnType("VARCHAR(20)")
                         .HasColumnName("Flight1_Source");
-
-                    b.Property<TimeSpan>("Flight2Duration")
-                        .HasColumnType("time(6)")
-                        .HasColumnName("Flight2Duration");
 
                     b.Property<DateTime>("Flight2_ArrivalDateTime")
                         .HasColumnType("DATETIME")
@@ -190,6 +166,33 @@ namespace AppBackend.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Deltas");
+                });
+
+            modelBuilder.Entity("AppBackend.Models.Flightprices", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Currency")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("FlightId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FlightSource")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FlightPrice");
                 });
 
             modelBuilder.Entity("AppBackend.Models.SouthWests", b =>
