@@ -41,8 +41,11 @@ new MySqlServerVersion(new Version(8,0,41))
 builder.Services.AddControllers();
 builder.Services.AddScoped<IFlightRepository,FlightRepository>();
 builder.Services.AddScoped<ICitiesRepository,CityRepository>();
-builder.Services.AddScoped<Icalculate,Calculate>();
+builder.Services.AddScoped<IPricecalculate,PriceCalculate>();
+builder.Services.AddScoped<ISeatRepository,SeatRepository>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+builder.Services.AddHostedService<SeatHoldCleanupSerivce>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
