@@ -15,6 +15,7 @@ namespace AppBackend.Data
     public DbSet<CombineFlight>CombineFlights{get;set;}
     public DbSet<ConnectingFlight>ConnectingFlights{get;set;}
     public DbSet<Cities>Cities{get;set;}
+    public DbSet<BookedSeat>BookedSeats{get;set;}
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
