@@ -6,10 +6,10 @@ using AppBackend.Repositories;
 using GeoCoordinates.Core;
 namespace  AppBackend.Services
 {
-    public class Calculate : Icalculate
+    public class PriceCalculate : IPricecalculate
     {
         private readonly ICitiesRepository _cityRepository;
-        public Calculate(ICitiesRepository cityRepository){
+        public PriceCalculate(ICitiesRepository cityRepository){
             _cityRepository = cityRepository;
         }
 
