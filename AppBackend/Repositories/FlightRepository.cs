@@ -15,8 +15,8 @@ namespace AppBackend.Repositories
         private readonly IMapper _mapper;
         
        
-        private readonly Icalculate _calculate;
-        public FlightRepository(AppDbContext context, IMapper mapper,Icalculate calculate){
+        private readonly IPricecalculate _calculate;
+        public FlightRepository(AppDbContext context, IMapper mapper,IPricecalculate calculate){
             _context = context;
             _mapper= mapper;
            
