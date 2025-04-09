@@ -11,8 +11,14 @@ node_modules
 dist
 dist-ssr
 *.local
+AppBackend.Tests/bin/
+AppBackend.Tests/obj/
+AppBackendTests/bin/
+AppBackendTests/obj/
 AppBackend/bin/
 # Editor directories and files
+
+
 .vscode/*
 !.vscode/extensions.json
 .idea
