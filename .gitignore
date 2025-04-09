@@ -12,6 +12,8 @@ dist
 dist-ssr
 *.local
 AppBackend/bin/
+AppBackend.Tests/bin/
+AppBackend.Tests/obj/
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

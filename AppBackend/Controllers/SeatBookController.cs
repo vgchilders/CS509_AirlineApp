@@ -6,7 +6,7 @@ namespace AppBackend.Controllers{
 
 
 [ApiController]
-[Route("api/vi/[controller]")]
+[Route("api/v1/[controller]")]
 public class SeatBookingController: ControllerBase
 {
     private readonly ISeatRepository _seatRepository;
