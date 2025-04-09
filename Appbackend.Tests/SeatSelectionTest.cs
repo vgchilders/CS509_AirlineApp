@@ -5,17 +5,17 @@ using AppBackend.Models;
 using FluentAssertions;
 using Xunit;
 
-public class SeatSelectionTests : IClassFixture<CustomWebApplicationFactory>
+public class SeatBookingTests : IClassFixture<CustomWebApplicationFactory>
 {
     private readonly HttpClient _client;
 
-    public SeatSelectionTests(CustomWebApplicationFactory factory)
+    public SeatBookingTests(CustomWebApplicationFactory factory)
     {
         _client = factory.CreateClient();
     }
 
     [Fact]
-    public async Task Should_Hold_Seat_Successfully()
+    public async Task Should_Book_Seat_Successfully()
     {
         var dto = new BookeSeatRequestDto
         {
@@ -29,11 +29,11 @@ public class SeatSelectionTests : IClassFixture<CustomWebApplicationFactory>
         var response = await _client.PostAsJsonAsync("/api/v1/SeatBooking/select", dto);
 
         response.StatusCode.Should().Be(HttpStatusCode.OK);
-        (await response.Content.ReadAsStringAsync()).Should().Contain("Seat held successfully");
+        (await response.Content.ReadAsStringAsync()).Should().Contain("Seat booked successfully.");
     }
 
     [Fact]
-    public async Task Should_Reject_Already_Held_Seat()
+    public async Task Should_Reject_Already_Booked_Seat()
     {
         var session = Guid.NewGuid();
         var dto = new BookeSeatRequestDto
@@ -45,9 +45,13 @@ public class SeatSelectionTests : IClassFixture<CustomWebApplicationFactory>
             SessionId = session
         };
 
-        await _client.PostAsJsonAsync("/api/v1/SeatSelection/select", dto); // first hold
+        // First booking
+        await _client.PostAsJsonAsync("/api/v1/SeatBooking/select", dto);
 
-        var response = await _client.PostAsJsonAsync("/api/v1/SeatBooking/select", dto); // second attempt
+        // Attempt to rebook
+        var response = await _client.PostAsJsonAsync("/api/v1/SeatBooking/select", dto);
+
         response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+        (await response.Content.ReadAsStringAsync()).Should().Contain("Seat already booked");
     }
 }
