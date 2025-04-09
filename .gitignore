@@ -11,10 +11,16 @@ node_modules
 dist
 dist-ssr
 *.local
+<<<<<<< HEAD
 AppBackend.Tests/bin/
 AppBackend.Tests/obj/
 AppBackendTests/bin/
 AppBackendTests/obj/
+=======
+AppBackend/bin/
+AppBackend.Tests/bin/
+AppBackend.Tests/obj/
+>>>>>>> e86cb156475e439a43aa929e3e7c727b04bfd7aa
 # Editor directories and files
 git pull origin main --rebase
 git push origin main

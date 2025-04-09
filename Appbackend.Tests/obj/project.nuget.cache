@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "qW2WkJVySgw=",
+  "dgSpecHash": "7GimD3vfjBM=",
   "success": true,
   "projectFilePath": "C:\\Users\\awetb\\Documents\\wpistudent\\CS509_AirlineApp\\AppBackend.Tests\\AppBackend.Tests.csproj",
   "expectedPackageFiles": [
@@ -65,6 +65,7 @@
     "C:\\Users\\awetb\\.nuget\\packages\\runtime.native.system.io.compression\\4.1.0\\runtime.native.system.io.compression.4.1.0.nupkg.sha512",
     "C:\\Users\\awetb\\.nuget\\packages\\runtime.native.system.net.http\\4.0.1\\runtime.native.system.net.http.4.0.1.nupkg.sha512",
     "C:\\Users\\awetb\\.nuget\\packages\\runtime.native.system.security.cryptography\\4.0.0\\runtime.native.system.security.cryptography.4.0.0.nupkg.sha512",
+    "C:\\Users\\awetb\\.nuget\\packages\\stripe.net\\48.1.0-beta.2\\stripe.net.48.1.0-beta.2.nupkg.sha512",
     "C:\\Users\\awetb\\.nuget\\packages\\swashbuckle.aspnetcore\\6.6.2\\swashbuckle.aspnetcore.6.6.2.nupkg.sha512",
     "C:\\Users\\awetb\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.6.2\\swashbuckle.aspnetcore.swagger.6.6.2.nupkg.sha512",
     "C:\\Users\\awetb\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.6.2\\swashbuckle.aspnetcore.swaggergen.6.6.2.nupkg.sha512",
@@ -73,6 +74,7 @@
     "C:\\Users\\awetb\\.nuget\\packages\\system.buffers\\4.0.0\\system.buffers.4.0.0.nupkg.sha512",
     "C:\\Users\\awetb\\.nuget\\packages\\system.collections\\4.0.11\\system.collections.4.0.11.nupkg.sha512",
     "C:\\Users\\awetb\\.nuget\\packages\\system.collections.concurrent\\4.0.12\\system.collections.concurrent.4.0.12.nupkg.sha512",
+    "C:\\Users\\awetb\\.nuget\\packages\\system.configuration.configurationmanager\\8.0.0\\system.configuration.configurationmanager.8.0.0.nupkg.sha512",
     "C:\\Users\\awetb\\.nuget\\packages\\system.console\\4.0.0\\system.console.4.0.0.nupkg.sha512",
     "C:\\Users\\awetb\\.nuget\\packages\\system.diagnostics.debug\\4.0.11\\system.diagnostics.debug.4.0.11.nupkg.sha512",
     "C:\\Users\\awetb\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.0.0\\system.diagnostics.diagnosticsource.4.0.0.nupkg.sha512",
@@ -114,6 +116,7 @@
     "C:\\Users\\awetb\\.nuget\\packages\\system.security.cryptography.encoding\\4.0.0\\system.security.cryptography.encoding.4.0.0.nupkg.sha512",
     "C:\\Users\\awetb\\.nuget\\packages\\system.security.cryptography.openssl\\4.0.0\\system.security.cryptography.openssl.4.0.0.nupkg.sha512",
     "C:\\Users\\awetb\\.nuget\\packages\\system.security.cryptography.primitives\\4.0.0\\system.security.cryptography.primitives.4.0.0.nupkg.sha512",
+    "C:\\Users\\awetb\\.nuget\\packages\\system.security.cryptography.protecteddata\\8.0.0\\system.security.cryptography.protecteddata.8.0.0.nupkg.sha512",
     "C:\\Users\\awetb\\.nuget\\packages\\system.security.cryptography.x509certificates\\4.1.0\\system.security.cryptography.x509certificates.4.1.0.nupkg.sha512",
     "C:\\Users\\awetb\\.nuget\\packages\\system.text.encoding\\4.0.11\\system.text.encoding.4.0.11.nupkg.sha512",
     "C:\\Users\\awetb\\.nuget\\packages\\system.text.encoding.extensions\\4.0.11\\system.text.encoding.extensions.4.0.11.nupkg.sha512",
