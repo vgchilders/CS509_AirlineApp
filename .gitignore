@@ -11,8 +11,16 @@ node_modules
 dist
 dist-ssr
 *.local
-AppBackend/bin/
+AppBackend.Tests/bin/
+AppBackend.Tests/obj/
+AppBackendTests/bin/
+AppBackendTests/obj/
 # Editor directories and files
+git pull origin main --rebase
+git push origin main
+
+
+
 .vscode/*
 !.vscode/extensions.json
 .idea
