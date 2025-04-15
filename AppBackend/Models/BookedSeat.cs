@@ -12,6 +12,7 @@ namespace AppBackend.Models
         public string SeatNumber    { get; set; }
         public bool IsConfirmed { get; set; }
         public DateTime HoldExpiresAt { get; set;}
+        public string Direction { get; set; } // "outbound" or "return"
         public Guid SessionId { get; set; }
 
         
