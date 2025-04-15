@@ -8,5 +8,6 @@ namespace AppBackend.Interfaces
     Task <List<string>> GetAvailableSeatsForConnectedFlightAsync(int flight1Id,int flight2Id,string source1,string source2);
     Task<bool>HoldSeatAsync(BookeSeatRequestDto dto);
     Task ExprireStaleSeatHoldsAsync();
+     Task<bool>ConfirmseatsAsync(Guid sessionId);
   }   
 }

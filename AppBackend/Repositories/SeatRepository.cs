@@ -120,7 +120,19 @@ namespace AppBackend.Repositories
         return SeatService.GenerateSeatMap().Except(heldSeats).ToList();
         }
 
-
+    public async Task<bool> ConfirmseatsAsync(Guid sessionId){
+        var  HeldSeats= await _context.BookedSeats.Where
+        (s=>s.SessionId==sessionId && !s.IsConfirmed && s.HoldExpiresAt> DateTime.UtcNow).ToListAsync();
+        if(!HeldSeats.Any()){
+            return false;
+        }
+        foreach(var seat in HeldSeats)
+        {
+            seat.IsConfirmed=true;
+        }
+        await _context.SaveChangesAsync();
+        return true;
+    }
 
     }
 }

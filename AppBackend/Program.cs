@@ -43,6 +43,8 @@ builder.Services.AddScoped<IFlightRepository,FlightRepository>();
 builder.Services.AddScoped<ICitiesRepository,CityRepository>();
 builder.Services.AddScoped<IPricecalculate,PriceCalculate>();
 builder.Services.AddScoped<ISeatRepository,SeatRepository>();
+builder.Services.AddScoped<ITicketBookingRepository,TicketBookingRepository>();
+builder.Services.AddScoped<ITicketBookingFlightRepository, TicketBookingFlightRepository>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
 builder.Services.AddHostedService<SeatHoldCleanupSerivce>();
