@@ -3,6 +3,7 @@ using AppBackend.Data;
 using AppBackend.DTOs;
 using AppBackend.Interfaces;
 using AppBackend.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace AppBackend.Repositories
 {
@@ -28,6 +29,18 @@ namespace AppBackend.Repositories
          await _context.SaveChangesAsync();
          return bookingInfo.Entity;
 
+        }
+
+        public async Task<TicketBooking> GetBookingBySessionIdAsync(Guid sessionId)
+        {
+            return  await _context.TicketBookings.Include(b=>b.Flights)
+            .FirstOrDefaultAsync(b=>b.SessionId==sessionId);
+        }
+
+        public async Task UpdateBookingAsync(TicketBooking booking)
+        {
+           _context.TicketBookings.Update(booking);
+           await _context.SaveChangesAsync();
         }
     }
 }

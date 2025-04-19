@@ -1,4 +1,4 @@
-using System.Runtime.CompilerServices;
+
 
 namespace AppBackend.Models
 {
@@ -15,6 +15,8 @@ namespace AppBackend.Models
     public  double Price { get; set; }
     public DateTime DateOfBirth { get; set; }
     public string Gender { get; set; }
+   
+
 
     public ICollection<TicketBookingFlight> Flights { get; set; } 
   }   

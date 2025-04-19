@@ -5,6 +5,7 @@ using AppBackend.Mapping;
 using AppBackend.Interfaces;
 using AppBackend.Repositories;
 using AppBackend.Services;
+using Stripe;
 
 
 
@@ -34,6 +35,12 @@ options.UseMySql(connectionString,
 new MySqlServerVersion(new Version(8,0,41))
 ));
 
+//ADD Strip
+var stripeApiKey=Environment.GetEnvironmentVariable("STRIPE_SECRET_KEY");
+if (string.IsNullOrEmpty(stripeApiKey))
+    throw new InvalidOperationException("STRIPE_SECRET_KEY is not set. Please configure your environment.");
+StripeConfiguration.ApiKey=stripeApiKey;
+
 
 
 // Add services to the container.
@@ -43,6 +50,7 @@ builder.Services.AddScoped<IFlightRepository,FlightRepository>();
 builder.Services.AddScoped<ICitiesRepository,CityRepository>();
 builder.Services.AddScoped<IPricecalculate,PriceCalculate>();
 builder.Services.AddScoped<ISeatRepository,SeatRepository>();
+builder.Services.AddScoped<IPaymentService,PaymentService>();
 builder.Services.AddScoped<ITicketBookingRepository,TicketBookingRepository>();
 builder.Services.AddScoped<ITicketBookingFlightRepository, TicketBookingFlightRepository>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
