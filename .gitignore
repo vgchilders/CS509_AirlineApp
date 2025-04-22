@@ -19,7 +19,7 @@ AppBackendTests/obj/
 AppBackend/bin/
 AppBackend.Tests/obj/
 # Editor directories and files
-
+AppBackend/.env
 
 .vscode/*
 !.vscode/extensions.json
@@ -30,3 +30,4 @@ AppBackend.Tests/obj/
 *.njsproj
 *.sln
 *.sw?
+.env
