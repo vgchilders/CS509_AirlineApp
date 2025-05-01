@@ -30,46 +30,7 @@ namespace AppBackend.Controllers
             _bookingService=bookingService;
         }
 
-        //[HttpPost]
-        // public async Task<IActionResult> HandleStripeWebhookAsync(HttpRequest request)
-        // {   
 
-
-        //     Console.WriteLine("I got hittttt");
-        //     var json = await new StreamReader(request.Body).ReadToEndAsync();
-        //     var secret = Environment.GetEnvironmentVariable("STRIPE_WEBHOOK_SECRET");
-
-        //     try
-        //     {
-        //         var stripeEvent = EventUtility.ConstructEvent(json, request.Headers["Stripe-Signature"], secret);
-
-        //         if (stripeEvent.Type == "checkout.session.completed")
-        //         {
-        //             var stripeSession = stripeEvent.Data.Object as Session;
-
-        //             if (stripeSession == null)
-        //             {
-        //                 _logger.LogError("Stripe session object is null in webhook payload.");
-        //                 return new BadRequestResult();
-        //             }
-        //             var success = await _ticketBookingRepository.ConfirmBookingFromStripeWebhookAsync(stripeSession.Id);
-        //     if (!success)
-        //     {
-        //         _logger.LogError("Failed to confirm booking from Stripe webhook session ID: {0}", stripeSession.Id);
-        //         return new BadRequestResult();
-        //     }
-
-                    
-        //         }
-
-        //         return new OkResult();
-        //     }
-        //     catch (StripeException e)
-        //     {
-        //         _logger.LogError($"Stripe webhook error: {e.Message}");
-        //         return BadRequest();
-        //     }
-        // }
 
 
         [HttpPost]
@@ -80,7 +41,7 @@ namespace AppBackend.Controllers
         try
         {
             var stripeSignature = Request.Headers["Stripe-Signature"];
-            var webhookSecret =Environment.GetEnvironmentVariable("STRIPE_WEBHOOK_SECRET"); 
+            var webhookSecret =Environment.GetEnvironmentVariable("STRIPE_WEBHOOK_SECRET");
 
             var stripeEvent = EventUtility.ConstructEvent(
                 json,

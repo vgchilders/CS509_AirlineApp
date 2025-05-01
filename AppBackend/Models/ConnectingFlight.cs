@@ -4,6 +4,8 @@ namespace AppBackend.Models
     {
     public int Flight1_Id { get; set; }
     public int Flight2_Id { get; set; }
+    public string Flight1Number { get; set; }
+    public string Flight2Number { get; set; }
     public string Flight1_DepartAirport { get; set; }
     public string ConnectingAirport { get; set; }
     public string Flight2_ArriveAirport { get; set; }
@@ -20,4 +22,4 @@ namespace AppBackend.Models
     public string Flight2_Source { get; set; }
     }
 }
- 
+

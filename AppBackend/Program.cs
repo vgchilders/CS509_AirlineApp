@@ -8,6 +8,7 @@ using AppBackend.Services;
 using Stripe;
 using DotNetEnv;
 using AppBackend.DTOs;
+using QuestPDF.Infrastructure;
 
 
 Env.Load();
@@ -35,7 +36,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddDbContext<AppDbContext>(options=>
 options.UseMySql(connectionString,
 new MySqlServerVersion(new Version(8,0,41))
-).EnableSensitiveDataLogging(true).LogTo(Console.WriteLine, 
+).EnableSensitiveDataLogging(true).LogTo(Console.WriteLine,
 LogLevel.Information).EnableDetailedErrors(true));
 
 //ADD Strip
@@ -60,7 +61,8 @@ builder.Services.Configure<SendGridSettings>(options=>{
        options.SenderName = "Flight App";
 
 });
- builder.Services.AddTransient<IEMailService,SendGridEmailService>();
+
+builder.Services.AddScoped<IEMailService,SendEmailSmtpSerivce>();
 
 builder.Services.AddScoped<IFlightRepository,FlightRepository>();
 builder.Services.AddScoped<ICitiesRepository,CityRepository>();
@@ -70,6 +72,7 @@ builder.Services.AddScoped<IPaymentService,PaymentService>();
 builder.Services.AddScoped<ITicketBookingRepository,TicketBookingRepository>();
 builder.Services.AddScoped<ITicketBookingFlightRepository, TicketBookingFlightRepository>();
 builder.Services.AddScoped<IBookingService, BookingService>();
+builder.Services.AddScoped<IPDFService, PDFService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
 builder.Services.AddHostedService<ReservationCleanUp>();
@@ -77,7 +80,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-
+QuestPDF.Settings.License = LicenseType.Community;
 app.UseCors(MyAllowSpecificOrigins);
 
 // Configure the HTTP request pipeline.
