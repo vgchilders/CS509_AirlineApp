@@ -56,4 +56,7 @@ public class SeatBookingTests : IClassFixture<CustomWebApplicationFactory>
         response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         (await response.Content.ReadAsStringAsync()).Should().Contain("Seat already booked");
     }
+
+
+
 }
