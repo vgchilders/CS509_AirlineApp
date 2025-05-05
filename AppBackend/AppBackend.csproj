@@ -30,4 +30,9 @@
      <PackageReference Include="ZXing.Net.Bindings.SkiaSharp" Version="0.16.21" />
   </ItemGroup>
 
+
+  <PropertyGroup>
+  <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  <DocumentationFile>bin\Debug\AppBackend.xml</DocumentationFile>
+  </PropertyGroup>
 </Project>

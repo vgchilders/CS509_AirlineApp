@@ -4,6 +4,7 @@ using System.Net.Http.Json;
 using AppBackend.DTOs;
 using AppBackend.Models;
 using AppBackend.Tests;
+using AppBackend;
 using FluentAssertions;
 using Xunit;
 
@@ -38,9 +39,8 @@ public class SeatBookingTests : IClassFixture<CustomWebApplicationFactory>
     public async Task Should_Reject_Already_Booked_Seat()
     {
         var session = Guid.NewGuid();
-        var dto = new BookeSeatRequestDto
+        var dto = new BookingDirectSeatsDto
         {
-            FlightType = FlightTypes.Direct,
             FlightId = 1001,
             FlightSource = "Delta",
             SeatNumber = "15B",
