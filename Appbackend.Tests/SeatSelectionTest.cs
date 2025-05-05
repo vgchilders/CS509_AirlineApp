@@ -19,7 +19,7 @@ public class SeatBookingTests : IClassFixture<CustomWebApplicationFactory>
     [Fact]
     public async Task Should_Book_Seat_Successfully()
     {
-        var dto = new BookeSeatRequestDto
+        var dto = new
         {
             FlightType = FlightTypes.Direct,
             FlightId = 1001,

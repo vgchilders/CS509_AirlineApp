@@ -9,6 +9,10 @@ using Stripe;
 using DotNetEnv;
 using AppBackend.DTOs;
 using QuestPDF.Infrastructure;
+using FluentValidation.AspNetCore;
+using FluentValidation;
+using AppBackend.Validations;
+using Microsoft.AspNetCore.Mvc;
 
 
 Env.Load();
@@ -55,12 +59,45 @@ StripeConfiguration.ApiKey=stripeApiKey;
 builder.Services.AddControllers().AddJsonOptions(options=>{
     options.JsonSerializerOptions.ReferenceHandler=System.Text.Json.Serialization.ReferenceHandler.Preserve;
 });
-builder.Services.Configure<SendGridSettings>(options=>{
-       options.ApiKey=Environment.GetEnvironmentVariable("SENDGRID_API_KEY");
-       options.SenderEmail = "flightapp45@gmail.com";
-       options.SenderName = "Flight App";
 
+
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.InvalidModelStateResponseFactory = context =>
+    {
+        var errors = context.ModelState
+            .Where(e => e.Value.Errors.Count > 0)
+            .ToDictionary(
+                kvp => kvp.Key,
+                kvp => kvp.Value.Errors.Select(e => e.ErrorMessage).ToArray()
+            );
+
+        var logger = context.HttpContext.RequestServices.GetRequiredService<ILogger<Program>>();
+
+        foreach (var entry in errors)
+        {
+            var field = entry.Key;
+            var messages = string.Join(" | ", entry.Value);
+            logger.LogWarning("Field: {Field}, Errors: {Messages}", field, messages);
+        }
+
+
+        var result = new
+        {
+            message = "Validation failed",
+            errors
+        };
+
+        return new BadRequestObjectResult(result);
+    };
 });
+
+
+
+builder.Services.AddValidatorsFromAssemblyContaining<BookingInfoDtoValidator>();
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddFluentValidationClientsideAdapters();
+
 
 builder.Services.AddScoped<IEMailService,SendEmailSmtpSerivce>();
 
