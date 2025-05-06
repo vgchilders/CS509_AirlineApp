@@ -1,4 +1,3 @@
-
 using System.Net;
 using System.Net.Mail;
 using AppBackend.Interfaces;
@@ -12,6 +11,10 @@ namespace AppBackend.Services
              var smtpUser = Environment.GetEnvironmentVariable("MAILERSEND_SMTP_USER");
             var smtpPass = Environment.GetEnvironmentVariable("MAILERSEND_SMTP_PASS");
             var fromEmail = Environment.GetEnvironmentVariable("MAILERSEND_FROM_EMAIL");
+            if (string.IsNullOrWhiteSpace(fromEmail))
+            {
+                throw new InvalidOperationException("Environment variable 'MAILERSEND_FROM_EMAIL' is not set or empty.");
+            }
             using var client= new SmtpClient("smtp.mailersend.net", 587)
             {
                 EnableSsl=true,
