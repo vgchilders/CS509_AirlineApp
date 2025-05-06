@@ -1,17 +1,17 @@
-
 import type { components } from '../types/api';
 type CombinedFlightDto = components['schemas']['CombinedFlightDto'];
 interface FlightListProps {
   title: string;
   flights: CombinedFlightDto[];
+  onSelectFlight?: (flight: CombinedFlightDto) => void;
 }
 
-function FlightList({ title, flights }:FlightListProps) {
+function FlightList({ title, flights, onSelectFlight }: FlightListProps) {
   if (!Array.isArray(flights)) {
     return <div>No flights available</div>;
   }
 
-  const handleSelectFlight = (flight:CombinedFlightDto) => {
+  const handleSelectFlight = (flight: CombinedFlightDto) => {
     console.log('Selected flight:', flight);
     // Add logic to handle flight selection for purchase
   };
@@ -26,9 +26,9 @@ function FlightList({ title, flights }:FlightListProps) {
             <p>Depart Airport: {flight.departAirport}</p>
             <p>Arrive Airport: {flight.arriveAirport}</p>
             <p>Departure Date: {new Date(flight.departDateTime || "").toLocaleString([], { hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'numeric', day: 'numeric' })}</p>
-            <p>Arrival Date: {new Date(flight.arriveDateTime||"").toLocaleString([], { hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'numeric', day: 'numeric' })}</p>
+            <p>Arrival Date: {new Date(flight.arriveDateTime || "").toLocaleString([], { hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'numeric', day: 'numeric' })}</p>
             <div style={{ textAlign: 'center' }}>
-              <button onClick={() => handleSelectFlight(flight)}>Select Flight</button>
+              <button onClick={() => onSelectFlight?.(flight)}>Select Flight</button>
             </div>
           </li>
         ))}
