@@ -13,6 +13,7 @@ public class BookingServiceTests : IClassFixture<CustomWebApplicationFactory>
 {
     private readonly AppDbContext _context;
     private readonly Mock<IEMailService> _mockEmailService = new();
+    private readonly Mock<IPDFService> _mockPdfService = new();
     private readonly BookingService _bookingService;
 
     public BookingServiceTests(CustomWebApplicationFactory factory)
@@ -21,7 +22,7 @@ public class BookingServiceTests : IClassFixture<CustomWebApplicationFactory>
         _context.Database.EnsureDeleted(); // Clean state before each test class run
         _context.Database.EnsureCreated();
 
-        _bookingService = new BookingService(_mockEmailService.Object, _context);
+        _bookingService = new BookingService(_mockEmailService.Object, _mockPdfService.Object, _context);
     }
 
     [Fact]
@@ -61,9 +62,9 @@ public class BookingServiceTests : IClassFixture<CustomWebApplicationFactory>
     {
         var booking = new TicketBooking
         {
-            FirstName = "Alice",
-            LastName = "Smith",
-            Email = "alice@example.com",
+            FirstName = "Valerie",
+            LastName = "Childers",
+            Email = "vgchilders@wpi.edu",
             Price = 300,
             ConfirmationCode = "CONF321",
             BookedSeats = new List<BookedSeat>
@@ -76,13 +77,19 @@ public class BookingServiceTests : IClassFixture<CustomWebApplicationFactory>
         await _bookingService.SendConfirmationEmailAsync(booking);
 
         //Assert
-        _mockEmailService.Verify(es => es.SendEmail(
-            "alice@example.com",
-            "Your Flight Booking Confirmation",
-            It.Is<string>(b => b.Contains("Alice Smith") && b.Contains("300") && b.Contains("CONF321")),
-            null,
-            null
-        ), Times.Once);
-
+        _mockEmailService.Verify(es =>
+            es.SendEmail(
+                "vgchilders@wpi.edu",
+                "Your Flight Ticket and Confirmation", // match actual subject
+                It.Is<string>(b =>
+                    b.Contains("Valerie Childers") &&
+                    b.Contains("300") &&
+                    b.Contains("CONF321")
+                ),
+                It.IsAny<byte[]>(), // allow for any PDF attachment
+                "Ticket_.pdf"       // match actual attachment name
+            ),
+            Times.Once
+        );
     }
 }
