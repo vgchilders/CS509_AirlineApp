@@ -9,12 +9,12 @@ namespace AppBackend.Repositories
 {
     public class SeatRepository : ISeatRepository
     {   private readonly AppDbContext _context;
-        
+
         public  SeatRepository(AppDbContext context)
         {
             _context = context;
         }
-     
+
 
         public async Task ExprireStaleSeatHoldsAsync()
         {
@@ -29,7 +29,7 @@ namespace AppBackend.Repositories
         }
 
         public async Task<List<FlightSeatMapDto>> GetAvailableSeatsForConnectedFlightAsync(int flight1Id, int flight2Id,string source1,string source2,string direction)
-        {   
+        {
 
 
             var seatFlight1=await GetAvailableSeatsForDirectFlightAsync(flight1Id,source1,direction);
@@ -64,12 +64,12 @@ namespace AppBackend.Repositories
         //     .ToListAsync();
 
         // return SeatService.GenerateSeatMap().Except(heldSeats).ToList();
-        
+
         }
 
         public async Task<List<string>> GetAvailableSeatsForDirectFlightAsync(int flightId,string source,string direction)
         {
-                                             
+
            var heldSeats = await _context.BookedSeats
             .Where(s => s.FlightType == FlightTypes.Direct &&
                         s.FlightId == flightId &&
@@ -98,12 +98,22 @@ namespace AppBackend.Repositories
     }
 
         public async Task<bool> HoldSeatForDirectFlightAsync(BookingDirectSeatsDto dto)
-        {
-            
+{
+    var existing = await _context.BookedSeats
+        .Where(s => s.FlightId == dto.FlightId
+                 && s.FlightSource == dto.FlightSource
+                 && s.SeatNumber == dto.SeatNumber
+                 && s.Direction == dto.Direction
+                 && (s.IsConfirmed || s.HoldExpiresAt > DateTime.UtcNow))
+        .FirstOrDefaultAsync();
 
-          var expiration = DateTime.UtcNow.AddMinutes(10);
-          _context.BookedSeats.Add(new BookedSeat
-     {
+    if (existing != null)
+        return false;
+
+    var expiration = DateTime.UtcNow.AddMinutes(10);
+
+    _context.BookedSeats.Add(new BookedSeat
+    {
         FlightId = dto.FlightId,
         FlightSource = dto.FlightSource,
         FlightType = FlightTypes.Direct,
@@ -116,11 +126,31 @@ namespace AppBackend.Repositories
 
     await _context.SaveChangesAsync();
     return true;
-        }
+}
 
-        public async Task<bool> HoldSeatForConnectingFlightAsync(BookingConnectingSeatsDto dto)
-        {
-            var expiration = DateTime.UtcNow.AddMinutes(10);
+
+       public async Task<bool> HoldSeatForConnectingFlightAsync(BookingConnectingSeatsDto dto)
+{
+    var now = DateTime.UtcNow;
+
+    var seat1Exists = await _context.BookedSeats
+        .AnyAsync(s => s.FlightId == dto.Flight1Id
+                    && s.FlightSource == dto.Flight1Sournce
+                    && s.SeatNumber == dto.Seat1
+                    && s.Direction == dto.Direction
+                    && (s.IsConfirmed || s.HoldExpiresAt > now));
+
+    var seat2Exists = await _context.BookedSeats
+        .AnyAsync(s => s.FlightId == dto.Flight2Id
+                    && s.FlightSource == dto.Flight2Source
+                    && s.SeatNumber == dto.Seat2
+                    && s.Direction == dto.Direction
+                    && (s.IsConfirmed || s.HoldExpiresAt > now));
+
+    if (seat1Exists || seat2Exists)
+        return false;
+
+    var expiration = now.AddMinutes(10);
 
     _context.BookedSeats.AddRange(new[]
     {
@@ -152,8 +182,9 @@ namespace AppBackend.Repositories
 
     await _context.SaveChangesAsync();
     return true;
-        }
+}
 
-       
+
+
     }
 }

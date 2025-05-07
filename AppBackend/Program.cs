@@ -46,20 +46,24 @@ new MySqlServerVersion(new Version(8,0,41))
 LogLevel.Information).EnableDetailedErrors(true));
 
 //ADD Strip
+
+var env= builder.Environment.EnvironmentName;
 var webhookSecret = Environment.GetEnvironmentVariable("STRIPE_WEBHOOK_SECRET");
+if (env!="Testing")
+{
 var stripeApiKey=Environment.GetEnvironmentVariable("STRIPE_SECRET_KEY");
 if (string.IsNullOrEmpty(stripeApiKey))
     throw new InvalidOperationException("STRIPE_SECRET_KEY is not set. Please configure your environment.");
 StripeConfiguration.ApiKey=stripeApiKey;
 
-
+}
 
 
 
 // Add services to the container.
 
 builder.Services.AddControllers().AddJsonOptions(options=>{
-    options.JsonSerializerOptions.ReferenceHandler=System.Text.Json.Serialization.ReferenceHandler.Preserve;
+    options.JsonSerializerOptions.ReferenceHandler=System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
 });
 
 
