@@ -1,15 +1,22 @@
-namespace AppBackend.Tests;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
 using AppBackend;
 using AppBackend.Data;
+using System.Collections.Generic;
+using System.Linq;
 
+namespace AppBackend.Tests
+{
 public class CustomWebApplicationFactory : WebApplicationFactory<Program>
 {
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
+             builder.UseEnvironment("Testing");
+
+        // Replace real DB with in-memory DB
         builder.ConfigureServices(services =>
         {
             var descriptor = services.SingleOrDefault(
@@ -28,4 +35,5 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
             db.Database.EnsureCreated();
         });
     }
+}
 }
